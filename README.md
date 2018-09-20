@@ -6,3 +6,5 @@ to use open text editor in blender and copy and paste
 ctrl+A and apply location, scale, rot and MAKE SURE the bone is PARENTED to the mesh no the other way around
 
 changed "contents = open("[wmb filepath]", "wb+")"
+
+this ONLY exports for WEAPONS do not try to use on any other models
