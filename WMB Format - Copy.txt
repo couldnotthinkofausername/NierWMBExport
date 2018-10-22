@@ -1,0 +1,427 @@
+|-----------------------------------------------------|
+|                   WMB HEADER                        |
+|-----------------------------------------------------|
+|  OFFSET  | SIZE |            DESCRIPTION            |
+|-----------------------------------------------------|
+|  0x0000  | 0x04 | Magic Number                      |
+|  0x0004  | 0x04 | version                           |
+|  0x0008  | 0x04 | ????                              |
+|  0x000C  | 0x02 | ????                              |
+|  0x000E  | 0x02 | ????                              |
+|  0x0010  | 0x04 | Bounding Box X                    | //These can be nopped      Bound Box position X?
+|  0x0014  | 0x04 | Bounding Box Y                    | //out in weapons with      Bound Box position Z?
+|  0x0018  | 0x04 | Bounding Box Z                    | //no issue as far as i     Bound Box position Y?
+|  0x001C  | 0x04 | Bounding Box U                    | //know                     Bound Box Scale X?
+|  0x0020  | 0x04 | Bounding Box V                    | //                         Bound Box Scale Z?
+|  0x0024  | 0x04 | Bounding Box W                    | //                         Bound Box Scale Y?
+|  0x0028  | 0x04 | Bones Offset                      |
+|  0x002C  | 0x04 | # of Bones                        |
+|  0x0030  | 0x04 | Bone Index Translate Table Offset | //These can be nopped
+|  0x0034  | 0x04 | Bone Translate Table Size         | //in weapons too
+|  0x0038  | 0x04 | Vertex Groups Offset              |
+|  0x003C  | 0x04 | # of Vertex Groups                |
+|  0x0040  | 0x04 | Batches Offset                    |
+|  0x0044  | 0x04 | # of Batches                      |
+|  0x0048  | 0x04 | LoD Offset                        |
+|  0x004C  | 0x04 | # of LoD                          |
+|  0x0050  | 0x04 | ????                              |
+|  0x0054  | 0x04 | # of ????                         |
+|  0x0058  | 0x04 | Bone Map Offset                   |
+|  0x005C  | 0x04 | Bone Map Entries                  | //4*Bone Map Entries == BoneMap Size
+|  0x0060  | 0x04 | Bone Sets Offset                  |
+|  0x0064  | 0x04 | # of Bone Sets                    |
+|  0x0068  | 0x04 | Materials Offset                  |
+|  0x006C  | 0x04 | # of Materials                    |
+|  0x0070  | 0x04 | Meshes Offset                     |
+|  0x0074  | 0x04 | # of Meshes                       |
+|  0x0078  | 0x04 | Mesh Material Offset              |
+|  0x007C  | 0x04 | # of Mesh Materials               |
+|  0x0080  | 0x04 | ????                              | //Could just be padding
+|  0x0084  | 0x04 | # of ????                         | //Could just be padding
+|-----------------------------------------------------|
+|  0x0088  | 0x04 | # of ????                         | //Could just be padding
+|  0x008C  | 0x04 | # of ????                         | //Could just be padding
+|-----------------------------------------------------|
+
+
+|------------------------------------------|
+|                   BONES                  |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | Bone ID                           |
+| 0x02 | Parent Index                      |
+| 0x04 | local Position X                  |
+| 0x04 | local Position Y                  |
+| 0x04 | local Position Z                  |
+|------------------------------------------|
+| 0x04 | local Rotation X                  |
+| 0x04 | local Rotation Y                  |
+| 0x04 | local Rotation Z                  |
+|------------------------------------------|
+| 0x04 | local Scale X                     |
+| 0x04 | local Scale Y                     |
+| 0x04 | local Scale Z                     |
+|------------------------------------------|
+| 0x04 | Position X                        |
+| 0x04 | Position Y                        |
+| 0x04 | Position Z                        |
+|------------------------------------------|
+| 0x04 | Rotation X                        |
+| 0x04 | Rotation Y                        |
+| 0x04 | Rotation Z                        |
+|------------------------------------------|
+| 0x04 | Scale X                           |
+| 0x04 | Scale Y                           |
+| 0x04 | Scale Z                           |
+|------------------------------------------|
+| 0x04 | tPosition X                       |
+| 0x04 | tPosition Y                       |
+| 0x04 | tPosition Z                       |
+|------------------------------------------|
+| 0x04 | Padding?                          | pad after end of data
+| 0x04 | Padding?                          |
+|------------------------------------------|
+
+|------------------------------------------|
+|        Bone Index Translate Table        |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+|NOT SURE YET                              |
+|------------------------------------------|
+
+|------------------------------------------|
+|               Vertex Groups              |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Vertex Offset                     |
+| 0x04 | Vertex Ex Data Offset             |
+| 0x04 | UnknownA                          |
+| 0x04 | UnknownB                          |
+| 0x04 | Vertex Size                       |
+| 0x04 | Vertex Ex Data Size               |
+| 0x04 | UnknownC                          |
+| 0x04 | UnknownD                          |
+| 0x04 | # of Vertexes                     |
+| 0x04 | Vertex Ex Data Flags              |
+| 0x04 | index Buffer Offset               |
+| 0x04 | # of Indexes                      |
+|------------------------------------------|
+
+|------------------------------------------|
+|              Vertex Type 1               | 0xb 0x7 0xa
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Position X                        |
+| 0x04 | Position Y                        |
+| 0x04 | Position Z                        |
+| 0x01 | ubyte (Float) tangent X           |
+| 0x01 | ubyte (Float) tangent Y           |
+| 0x01 | ubyte (Float) tangent Z           |
+| 0x01 | ubyte (Float) tangent D           |
+| 0x02 | hfloat mapping U                  | //UV 
+| 0x02 | hfloat mapping V                  | //hfloat are unsigned shorts??
+| 0x01 | ubyte X  Bone Index               |
+| 0x01 | ubyte Y  Bone Index               |
+| 0x01 | ubyte Z  Bone Index               |
+| 0x01 | ubyte D  Bone Index               |
+| 0x01 | ubyte X  Bone Weight              |
+| 0x01 | ubyte Y  Bone Weight              |
+| 0x01 | ubyte Z  Bone Weight              |
+| 0x01 | ubyte D  Bone Weight              |
+|------------------------------------------|
+
+|------------------------------------------|
+|              Vertex Type 2               | 0x5 0x4 0xe 0xc
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Position X                        |
+| 0x04 | Position Y                        |
+| 0x04 | Position Z                        |
+| 0x01 | ubyte (Float) tangent X           |
+| 0x01 | ubyte (Float) tangent Y           |
+| 0x01 | ubyte (Float) tangent Z           |
+| 0x01 | ubyte (Float) tangent D           |
+| 0x02 | hfloat mapping U                  | //UV 
+| 0x02 | hfloat mapping V                  | //
+| 0x02 | hfloat mapping 2 U                | //UV 
+| 0x02 | hfloat mapping 2 V                | //
+| 0x01 | ubyte X  Color                    |
+| 0x01 | ubyte Y  Color                    |
+| 0x01 | ubyte Z  Color                    |
+| 0x01 | ubyte D  Color                    |
+|------------------------------------------|
+
+|------------------------------------------|
+|          Vertex Ex Data Type 1           | 0xb
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | hfloat mapping 2 U                | //UV 
+| 0x02 | hfloat mapping 2 V                | //
+| 0x01 | ubyte X  Color                    |
+| 0x01 | ubyte Y  Color                    |
+| 0x01 | ubyte Z  Color                    |
+| 0x01 | ubyte D  Color                    |
+| 0x02 | hfloat normal nx                  |
+| 0x02 | hfloat normal ny                  |
+| 0x02 | hfloat normal nz                  |
+| 0x02 | hfloat normal dummy               |
+| 0x01 | hfloat mapping 3 U                | 
+| 0x01 | hfloat mapping 3 V                |
+|------------------------------------------|
+
+|------------------------------------------|
+|          Vertex Ex Data Type 2           | 0x7
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | hfloat mapping 2 U                | 
+| 0x02 | hfloat mapping 2 V                |
+| 0x02 | hfloat normal nx                  |
+| 0x02 | hfloat normal ny                  |
+| 0x02 | hfloat normal nz                  |
+| 0x02 | hfloat normal dummy               |
+|------------------------------------------|
+
+|------------------------------------------|
+|          Vertex Ex Data Type 3           | 0xa
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | hfloat mapping 2 U                | 
+| 0x02 | hfloat mapping 2 V                |
+| 0x01 | ubyte X  Color                    |
+| 0x01 | ubyte Y  Color                    |
+| 0x01 | ubyte Z  Color                    |
+| 0x01 | ubyte D  Color                    |
+| 0x02 | hfloat normal nx                  |
+| 0x02 | hfloat normal ny                  |
+| 0x02 | hfloat normal nz                  |
+| 0x02 | hfloat normal dummy               |
+|------------------------------------------|
+
+|------------------------------------------|
+|          Vertex Ex Data Type 4           | 0x5
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | hfloat normal nx                  |
+| 0x02 | hfloat normal ny                  |
+| 0x02 | hfloat normal nz                  |
+| 0x02 | hfloat normal dummy               |
+| 0x02 | hfloat mapping 3 U                | 
+| 0x02 | hfloat mapping 3 V                |
+|------------------------------------------|
+
+|------------------------------------------|
+|          Vertex Ex Data Type 5           | 0x4
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | hfloat normal nx                  |
+| 0x02 | hfloat normal ny                  |
+| 0x02 | hfloat normal nz                  |
+| 0x02 | hfloat normal dummy               |
+|------------------------------------------|
+
+|------------------------------------------|
+|          Vertex Ex Data Type 6           | 0xe
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | hfloat normal nx                  |
+| 0x02 | hfloat normal ny                  |
+| 0x02 | hfloat normal nz                  |
+| 0x02 | hfloat normal dummy               |
+| 0x02 | hfloat mapping 3 U                | 
+| 0x02 | hfloat mapping 3 V                |
+| 0x02 | hfloat mapping 4 U                | 
+| 0x02 | hfloat mapping 4 V                |
+|------------------------------------------|
+
+|------------------------------------------|
+|          Vertex Ex Data Type 7           | 0xc
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | hfloat normal nx                  |
+| 0x02 | hfloat normal ny                  |
+| 0x02 | hfloat normal nz                  |
+| 0x02 | hfloat normal dummy               |
+| 0x02 | hfloat mapping 3 U                | 
+| 0x02 | hfloat mapping 3 V                |
+| 0x02 | hfloat mapping 4 U                | 
+| 0x02 | hfloat mapping 4 V                |
+| 0x02 | hfloat mapping 5 U                | 
+| 0x02 | hfloat mapping 5 V                |
+|------------------------------------------|
+
+|------------------------------------------|
+|               Index Type 1               | unknown count = 10
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | indexes                           | # of indexes
+|------------------------------------------|
+
+|------------------------------------------|
+|               Index Type 2               | unknown count = 2
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |# of indexes
+|------------------------------------------|
+| 0x02 | indexes                           |
+|------------------------------------------|
+
+|------------------------------------------|
+|                 Batches                  | 
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Vertex Group Index                |
+| 0x04 | Bone Set Index                    |
+| 0x04 | Vertex Start                      |
+| 0x04 | Index Start                       |
+| 0x04 | # of Vertexes                     |
+| 0x04 | # of Indexes                      |
+| 0x04 | # of Primitives                   |
+|------------------------------------------|
+
+|------------------------------------------|
+|          Level of Detail Models          | 
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Name Offset                       |
+| 0x04 | LoD Level                         |
+| 0x04 | Batch Start                       |
+| 0x04 | BatchInfo Offset                  |
+| 0x04 | # of BatchInfos                   |
+|------------------------------------------|
+
+|------------------------------------------|
+|                BatchInfos                | 
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Vertex Group Index                |
+| 0x04 | Mesh Index                        |
+| 0x04 | Material Index                    |
+| 0x04 | Unknown0                          |
+| 0x04 | Mesh Material Pair Index          |
+| 0x04 | Unknown1                          |
+|------------------------------------------|
+
+|------------------------------------------|
+|                 Bone Map                 | 
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Bone Map                          | boneMap[header.boneMapSize];
+|------------------------------------------|
+
+|------------------------------------------|
+|             Bone Sets  Header            | 
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Bone Set Offset                   |
+| 0x04 | # of Bone Indexes                 |
+|------------------------------------------|
+
+|------------------------------------------|
+|                 Bone Sets                | 
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | bone Indexes                      | boneIndexes[numBoneIndexes];
+|------------------------------------------|
+
+|------------------------------------------|
+|                 MATERIALS                |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x02 | unknown0                          |
+| 0x02 | unknown0                          |
+| 0x02 | unknown0                          |
+| 0x02 | unknown0                          |
+| 0x04 | Name Offset                       |
+| 0x04 | Shader Name Offset                |
+| 0x04 | Technique Name Offset             |
+| 0x04 | unknown                           |
+| 0x04 | Texture Offset                    |
+| 0x04 | # of Textures                     |
+| 0x04 | Parameter Groups Offset           |
+| 0x04 | # of Parameter Groups             |
+| 0x04 | Variables Offset                  |
+| 0x04 | # of Variables                    |
+|------------------------------------------|
+
+|------------------------------------------|
+|                  Texture                 |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Name Offset                       | 
+| 0x04 | Texture                           |
+|------------------------------------------|
+
+
+|------------------------------------------|
+|         Parameter Groups Header          |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Index                             |
+| 0x04 | Parameters Offset                 |
+| 0x04 | # of Parameters                   |
+|------------------------------------------|
+
+|------------------------------------------|
+|                 Parameter                |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Float parameter                   |
+|------------------------------------------|
+
+|------------------------------------------|
+|                 Variables                |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Name Offset                       |
+| 0x04 | Float value                       |
+|------------------------------------------|
+
+|------------------------------------------|
+|                 Meshes                   |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Name Offset                       |
+| 0x04 | Float X                           |
+| 0x04 | Float Y                           |
+| 0x04 | Float Z                           |
+| 0x04 | Float U                           |
+| 0x04 | Float V                           |
+| 0x04 | Float W                           |
+| 0x04 | Materials Offset                  |
+| 0x04 | # of Materials                    |
+| 0x04 | Bones Offset                      |
+| 0x04 | # of Bones                        |
+|------------------------------------------|
+
+|------------------------------------------|
+|              Mesh Material               |
+|------------------------------------------|
+| SIZE |            DESCRIPTION            |
+|------------------------------------------|
+| 0x04 | Mesh ID                           |
+| 0x04 | Material ID                       |
+|------------------------------------------|
